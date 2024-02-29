@@ -1,5 +1,6 @@
 
 import { Header } from "./components/header"
+import { Footer } from "./components/footer"
 import { BackgroundImg } from "./components/background"
 import { CharacterList } from "./components/character-list"
 import { api } from "./api"
@@ -21,12 +22,23 @@ function App() {
     fetchData()
   }, [])
 
+  const fetchNextPage = (url) =>{
+    fetchData(url)
+  }
+
+  const fetchPreviousPage = (url) =>{
+    fetchData(url)
+  }
 
   return (
     <>
       <Header />
       <BackgroundImg />
-      <CharacterList data={data} />
+      <CharacterList data={data} 
+      fetchNextPage = {(url) => fetchNextPage(url)}
+      fetchPreviousPage = {(url) => fetchPreviousPage(url)}
+      />
+      <Footer />
     </>
   )
 }
